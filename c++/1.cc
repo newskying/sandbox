@@ -7,8 +7,12 @@
 using namespace std;
 
 void test_bool() {
-    bool tt{};
-    cout << "bool:" << tt << endl;
+    bool b1{};
+    bool b2{false};
+    bool b3{true};
+    cout << "bool:" << b1 << endl;
+    cout << "bool:" << b2 << endl;
+    cout << "bool:" << b3 << endl;
 }
 
 
@@ -102,25 +106,88 @@ void test_type_size() {
 
 void test_sstream_transform() {
    std::ostringstream os;
-   unsigned u(0);
+   unsigned u(15);
+   std::cout << "unsigned u:" << u << std::endl
+      <<"unsigned u sci:" << std::scientific << u << std::endl
+      <<"unsigned u hex:" << std::hex << u << std::endl
+      <<"unsigned u again:" << u << std::endl
+      <<"unsigned u oct:" << std::oct << u << std::endl
+      <<"unsigned u again:" << u << std::endl;
+
    os << u;
-   std::cout << "u:" << u << std::endl
-      <<"hex:" << std::hex << u << std::endl
-      << "string: " << os.str() << std::endl;
+   std::cout << "string: " << os.str() << std::endl;
    os.str("");
    os << std::hex << u;
-   std::cout << "hex string: " << os.str() << std::endl;
+   std::cout << "string hex: " << os.str() << std::endl;
+}
+
+template<class K, class T>
+void out_map(std::map<K, T> const& m) {
+   for (auto i : m) {
+      std::cout << i.first << ":" << i.second << std::endl;
+   }
+}
+
+void test_map() {
+   map<int, int> m = {
+      {1, 1},
+      {2, 2}
+   };
+   out_map(m);
+   int i = m.erase(1);  //has key in map
+   std::cout << "i:" << i << std::endl;
+   i = m.erase(3);      //no key in map
+   std::cout << "i:" << i << std::endl;
+   std::cout << "-----" << std::endl;
+   out_map(m);
+}
+
+#include <unistd.h>
+void test_circle(int time) {
+   //sleep(time);
+   //usleep(time*1000000);//microseconds
+}
+
+void test_auto() {
+   auto n = 2 * 1024 * 1024 * 1024; //error: beyond limit of integer
+   std::cout << n << std::endl;
+}
+
+void test_number_size() {
+   uint64_t s = 0xffffffffffffffff;
+   cout << s << std::endl;
+   printf("%u, %lu, %llu, %ju\n", s, s, s, s);
+   printf("%x", &s);
+}
+
+enum class EEE : unsigned {
+   EE_AA = 0,
+   EE_BB,
+   EE_CC, //has "," here
+};
+
+void test_enum_class() {
+   EEE e1{EEE::EE_AA};
+   EEE e2{EEE::EE_BB};
+   EEE e3{EEE::EE_CC};
+   cout << (unsigned) e1 << std::endl;
+   cout << (unsigned) e2 << std::endl;
+   cout << (unsigned) e3 << std::endl;
 }
 
 int main(int argc, char* argv[]) {
     //test_bool();
     //test_default_cast();
     //test_function();
-    test_enum();
+    //test_enum();
     //test_printf();
     //test_output_map();
     //test_trasfer_string();
     //test_type_size();
-    //test_sstream_transform();
+    test_sstream_transform();
+    //test_map();
+    //test_auto();
+    //test_number_size();
+    //test_enum_class();
 }
 
