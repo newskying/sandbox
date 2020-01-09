@@ -1,0 +1,4 @@
+/tmp/ezxinxi/esapc/software/build/development-with-optimizations/Code/third-parties/
+-I./boost/usr/local/include 
+-L./boost/usr/local/lib 
+-lboost_system

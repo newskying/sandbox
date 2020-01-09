@@ -1,8 +1,11 @@
+//g++ --std=c++11 -lpthread 1.cc
 #include <iostream>
 #include <thread>
 #include <array>
 #include <vector>
 #include <functional>
+#include <chrono>
+#include <thread>
 
 void fun() {
    std::cout << "A new thread!" << std::endl;
@@ -104,11 +107,36 @@ void test_function_bind() {
     std::cout << "func4 ret:" << typeid(func4(15)).name() << "=" << func4(15) << std::endl;
 }
 
+void f1(int n) {
+    for (int i = 0; i < 5; ++i) {
+        std::cout << "Thread " << n << " executing\n";
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+}
+void f2(int& n) {
+    for (int i = 0; i < 5; ++i) {
+        std::cout << "Thread 2 executing\n";
+        ++n;
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+}
+void test_cpp11_thread() {
+   int n = 0;
+   std::thread t1; //t1 is not a thread
+   std::thread t2(f1, n+1); //pass by value
+   std::thread t3(f2, std::ref(n)); // pass by reference
+   std::thread t4(std::move(t3)); // pass by reference
+   t2.join();
+   t4.join();
+   std::cout << "Final value of n is " << n << '\n';
+}
+
 int main(int argc, char* argv[]) {
    //test_thread();
    //test_lambda_capture_value();
    //test_lambda_capture_this();
-   test_function_bind();
+   //test_function_bind();
+   test_cpp11_thread();
    return 0;
 }
 
