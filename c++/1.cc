@@ -6,6 +6,8 @@
 #include <functional>
 #include <sstream>
 #include <typeinfo>
+#include <memory>
+#include <algorithm>
 
 using namespace std;
 
@@ -282,15 +284,28 @@ void fun_overload(People p) {
    //cout << "fun1(People const&)" << endl;
 //}
 
+class Test {
+   public:
+      void find(const string& s1, const string& s2) {
+         cout << "find1" << endl;
+      }
+      void find(const string& s1, bool retied) {
+         cout << "find2" << endl;
+      }
+};
+
 void test_function_overload() {
    cout << "------test_function_overload------" << endl;
    People p{"hali", 8};
-   fun_overload(p);
+   //fun_overload(p);
+   Test *t = new Test();
+   t->find("hali", "potter");
 }
 
 class Obj {
    public:
-      Obj(int i) {
+      int i_;
+      Obj(int i) : i_(i) {
          cout << "in Obj(int)..." << endl;
       }
       Obj() {
@@ -336,8 +351,25 @@ void test_copy_move() {
    //v.push_back(Obj()); //use Obj(&&)
 }
 
+bool compare_Obj(unique_ptr<Obj> const& l, unique_ptr<Obj> const& r) {
+   return l->i_ < r->i_;
+}
+
+bool compare_Obj_a(auto_ptr<Obj> const& l, auto_ptr<Obj> const& r) {
+   return l->i_ < r->i_;
+}
+
 int main(int argc, char* argv[]) {
-   test_copy_move();
+   std::vector<unique_ptr<Obj>> v;
+   v.push_back(unique_ptr<Obj>(new Obj(1)));
+   v.push_back(unique_ptr<Obj>(new Obj(2)));
+   sort(v.begin(), v.end(), compare_Obj);
+
+   std::vector<auto_ptr<Obj>> v2;
+   v.push_back(auto_ptr<Obj>(new Obj(1)));
+   sort(v.begin(), v.end(), compare_Obj_a);
+
+   //test_copy_move();
    //test_function_overload();
    //test_bool();
    //test_default_cast();

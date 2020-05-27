@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <time.h>
+#include <string>
+
+int main()
+{
+   struct tm date;
+   strptime("+0001", "%z", &date);
+   printf("+0001:%ld\n", date.tm_gmtoff);
+   strptime("+0002", "%z", &date);
+   printf("+0002:%ld\n", date.tm_gmtoff);
+   strptime("+0003", "%z", &date);
+   printf("+0003:%ld\n", date.tm_gmtoff);
+   strptime("+0004", "%z", &date);
+   printf("+0004:%ld\n", date.tm_gmtoff);
+   strptime("+0005", "%z", &date);
+   printf("+0005:%ld\n", date.tm_gmtoff);
+   strptime("+0010", "%z", &date);
+   printf("+0010:%ld\n", date.tm_gmtoff);
+   strptime("+0015", "%z", &date);
+   printf("+0015:%ld\n", date.tm_gmtoff);
+   strptime("+0030", "%z", &date);
+   printf("+0030:%ld\n", date.tm_gmtoff);
+   strptime("+0045", "%z", &date);
+   printf("+0045:%ld\n", date.tm_gmtoff);
+   strptime("+0100", "%z", &date);
+   printf("+0100:%ld\n", date.tm_gmtoff);
+   strptime("+00:01", "%z", &date);
+   printf("+00:01:%ld\n", date.tm_gmtoff);
+   strptime("+00:02", "%z", &date);
+   printf("+00:02:%ld\n", date.tm_gmtoff);
+   strptime("+00:03", "%z", &date);
+   printf("+00:03:%ld\n", date.tm_gmtoff);
+   strptime("+00:04", "%z", &date);
+   printf("+00:04:%ld\n", date.tm_gmtoff);
+   strptime("+00:05", "%z", &date);
+   printf("+00:05:%ld\n", date.tm_gmtoff);
+   strptime("+00:10", "%z", &date);
+   printf("+00:10:%ld\n", date.tm_gmtoff);
+   strptime("+00:15", "%z", &date);
+   printf("+00:15:%ld\n", date.tm_gmtoff);
+   strptime("+00:30", "%z", &date);
+   printf("+00:30:%ld\n", date.tm_gmtoff);
+   strptime("+00:45", "%z", &date);
+   printf("+00:45:%ld\n", date.tm_gmtoff);
+   strptime("+01:00", "%z", &date);
+   printf("+01:00:%ld\n", date.tm_gmtoff);
+   //printf("%d\n", std::stoi("+8"));
+   strptime("-0001", "%z", &date);
+   printf("-0001:%ld\n", date.tm_gmtoff);
+   strptime("-0002", "%z", &date);
+   printf("-0002:%ld\n", date.tm_gmtoff);
+   strptime("-0003", "%z", &date);
+   printf("-0003:%ld\n", date.tm_gmtoff);
+   strptime("-0004", "%z", &date);
+   printf("-0004:%ld\n", date.tm_gmtoff);
+   strptime("-0005", "%z", &date);
+   printf("-0005:%ld\n", date.tm_gmtoff);
+   strptime("-0010", "%z", &date);
+   printf("-0010:%ld\n", date.tm_gmtoff);
+   strptime("-0015", "%z", &date);
+   printf("-0015:%ld\n", date.tm_gmtoff);
+   strptime("-0030", "%z", &date);
+   printf("-0030:%ld\n", date.tm_gmtoff);
+   strptime("-0045", "%z", &date);
+   printf("-0045:%ld\n", date.tm_gmtoff);
+   strptime("-0100", "%z", &date);
+   printf("-0100:%ld\n", date.tm_gmtoff);
+   strptime("-00:01", "%z", &date);
+   printf("-00:01:%ld\n", date.tm_gmtoff);
+   strptime("-00:02", "%z", &date);
+   printf("-00:02:%ld\n", date.tm_gmtoff);
+   strptime("-00:03", "%z", &date);
+   printf("-00:03:%ld\n", date.tm_gmtoff);
+   strptime("-00:04", "%z", &date);
+   printf("-00:04:%ld\n", date.tm_gmtoff);
+   strptime("-00:05", "%z", &date);
+   printf("-00:05:%ld\n", date.tm_gmtoff);
+   strptime("-00:10", "%z", &date);
+   printf("-00:10:%ld\n", date.tm_gmtoff);
+   strptime("-00:15", "%z", &date);
+   printf("-00:15:%ld\n", date.tm_gmtoff);
+   strptime("-00:30", "%z", &date);
+   printf("-00:30:%ld\n", date.tm_gmtoff);
+   strptime("-00:45", "%z", &date);
+   printf("-00:45:%ld\n", date.tm_gmtoff);
+   strptime("-01:00", "%z", &date);
+   printf("-01:00:%ld\n", date.tm_gmtoff);
+   return 0;
+}
+
