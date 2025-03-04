@@ -1,3 +1,9 @@
+////////////////////////////////////////////////////////////////
+//why stack could be helpful? it recorded the access order! the order is managed by push and pop.
+//!!!the key of operating stack is distinguish push and pop!!!
+//中序遍历: cur == stack.top indicate whether left subtree accessed
+////////////////////////////////////////////////////////////////
+
 #include <iostream>
 using namespace std;
 struct BinTree {
